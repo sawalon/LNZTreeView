@@ -480,7 +480,7 @@ extension LNZTreeView: UITableViewDelegate {
     }
     
     public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        guard var nodes = nodesForSection[indexPath.section],
+        guard let nodes = nodesForSection[indexPath.section],
             let indexInParent = self.indexInParent(forNodeAt: indexPath) else {
                 fatalError("Something wrong here")
         }
@@ -507,7 +507,7 @@ extension LNZTreeView: UITableViewDelegate {
             tableView.endUpdates()
         }
         
-        tableView.reloadRows(at: [indexPath], with: .fade)
+        tableView.reloadRows(at: [indexPath], with: .none)
         
         if node.isExpanded {
             let range = closeNode(node, atIndex: indexPath.row, in: &nodes)
